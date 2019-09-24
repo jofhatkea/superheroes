@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="">
+      <label>
+        Male
+        <input type="radio" />
+      </label>
+      <label for="male">
+        Male
+        <input id="male" type="radio" />
+      </label>
+    </form>
+
+    <label for="ice-cream-choice">Choose a flavor (<span></span>):</label>
+    <input
+      list="ice-cream-flavors"
+      id="ice-cream-choice"
+      name="ice-cream-choice"
+    />
+
+    <datalist id="ice-cream-flavors"> </datalist>
+
+    <script>
+      fetch("en.txt")
+        .then(res => res.text())
+        .then(parse);
+      let data = [];
+      function parse(raw) {
+        data = raw.split("\n");
+      }
+      //const data = ["apple", "art", "ants", "alan", "bars", "bob", "beer"];
+      //data.sort();
+      const inp = document.querySelector("input");
+      const datalist = document.querySelector("datalist");
+      const span = document.querySelector("span");
+
+      inp.addEventListener("input", e => {
+        datalist.innerHTML = "";
+        if (inp.value == "") {
+          return;
+        }
+        const relevant = data.filter(val => {
+          return val.startsWith(inp.value);
+        });
+        relevant.forEach(val => {
+          const option = document.createElement("option");
+          option.value = val;
+          datalist.appendChild(option);
+        });
+        inp.value = inp.value;
+        span.textContent = relevant.length;
+      });
+    </script>
+  </body>
+</html>

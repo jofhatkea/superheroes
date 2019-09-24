@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body,
+      html,
+      h1 {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        position: relative;
+        background: black;
+      }
+      section {
+        color: white;
+        position: relative;
+      }
+      section blockquote {
+        font-size: 30px;
+      }
+
+      section.content1 {
+        z-index: 10;
+      }
+      section.background {
+        position: fixed;
+        color: blue;
+        z-index: 5;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+      }
+      section.background h1 {
+        font-size: 30vh;
+        text-align: center;
+        grid-column: 1/-1;
+        grid-row: 1/-1;
+      }
+      section.background .man {
+        width: 62px;
+        height: 56px;
+        background: url(monster.png) 0 0;
+        grid-column: 1/-1;
+        grid-row: 1/-1;
+        margin: auto;
+      }
+      section.content2 {
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="content content1">
+      <h1>Part 1</h1>
+      <blockquote>
+        <p>We make awesome websites</p>
+        <p>It's true, really</p>
+        <p>I'm amazed at how awesome we are</p>
+      </blockquote>
+      <blockquote>
+        <p>We make awesome websites</p>
+        <p>It's true, really</p>
+        <p>I'm amazed at how awesome we are</p>
+      </blockquote>
+      <blockquote>
+        <p>We make awesome websites</p>
+        <p>It's true, really</p>
+        <p>I'm amazed at how awesome we are</p>
+      </blockquote>
+      <blockquote>
+        <p>We make awesome websites</p>
+        <p>It's true, really</p>
+        <p>I'm amazed at how awesome we are</p>
+      </blockquote>
+      <blockquote>
+        <p>We make awesome websites</p>
+        <p>It's true, really</p>
+        <p>I'm amazed at how awesome we are</p>
+      </blockquote>
+      <blockquote>
+        <p>We make awesome websites</p>
+        <p>It's true, really</p>
+        <p>I'm amazed at how awesome we are</p>
+      </blockquote>
+      <blockquote>
+        <p>We make awesome websites</p>
+        <p>It's true, really</p>
+        <p>I'm amazed at how awesome we are</p>
+      </blockquote>
+      <blockquote>
+        <p>We make awesome websites</p>
+        <p>It's true, really</p>
+        <p>I'm amazed at how awesome we are</p>
+      </blockquote>
+    </section>
+    <section class="background">
+      <h1>0</h1>
+      <div class="man"></div>
+    </section>
+    <section class="content content2">
+      <h1>Part 3</h1>
+      <blockquote>
+        <p>We make awesome websites</p>
+        <p>It's true, really</p>
+        <p>I'm amazed at how awesome we are</p>
+      </blockquote>
+      <blockquote>
+        <p>We make awesome websites</p>
+        <p>It's true, really</p>
+        <p>I'm amazed at how awesome we are</p>
+      </blockquote>
+      <blockquote>
+        <p>We make awesome websites</p>
+        <p>It's true, really</p>
+        <p>I'm amazed at how awesome we are</p>
+        <blockquote>
+          <p>We make awesome websites</p>
+          <p>It's true, really</p>
+          <p>I'm amazed at how awesome we are</p>
+        </blockquote>
+        <blockquote>
+          <p>We make awesome websites</p>
+          <p>It's true, really</p>
+          <p>I'm amazed at how awesome we are</p>
+        </blockquote>
+        <blockquote>
+          <p>We make awesome websites</p>
+          <p>It's true, really</p>
+          <p>I'm amazed at how awesome we are</p>
+        </blockquote>
+        <blockquote>
+          <p>We make awesome websites</p>
+          <p>It's true, really</p>
+          <p>I'm amazed at how awesome we are</p>
+        </blockquote>
+        <blockquote>
+          <p>We make awesome websites</p>
+          <p>It's true, really</p>
+          <p>I'm amazed at how awesome we are</p>
+        </blockquote>
+        <blockquote>
+          <p>We make awesome websites</p>
+          <p>It's true, really</p>
+          <p>I'm amazed at how awesome we are</p>
+        </blockquote>
+        <blockquote>
+          <p>We make awesome websites</p>
+          <p>It's true, really</p>
+          <p>I'm amazed at how awesome we are</p>
+        </blockquote>
+        <blockquote>
+          <p>We make awesome websites</p>
+          <p>It's true, really</p>
+          <p>I'm amazed at how awesome we are</p>
+        </blockquote>
+      </blockquote>
+    </section>
+
+    <script>
+      var winheight, docheight, trackLength, throttlescroll;
+
+      function getDocHeight() {
+        var D = document;
+        return Math.max(
+          D.body.scrollHeight,
+          D.documentElement.scrollHeight,
+          D.body.offsetHeight,
+          D.documentElement.offsetHeight,
+          D.body.clientHeight,
+          D.documentElement.clientHeight
+        );
+      }
+
+      function getmeasurements() {
+        winheight =
+          window.innerHeight ||
+          (document.documentElement || document.body).clientHeight;
+        docheight = getDocHeight();
+        trackLength = docheight - winheight;
+      }
+
+      function amountscrolled() {
+        var scrollTop =
+          window.pageYOffset ||
+          (
+            document.documentElement ||
+            document.body.parentNode ||
+            document.body
+          ).scrollTop;
+        var pctScrolled = Math.floor((scrollTop / trackLength) * 100); // gets percentage scrolled (ie: 80 or NaN if tracklength == 0)
+        //console.log(pctScrolled + "% scrolled");
+        return pctScrolled;
+      }
+
+      getmeasurements();
+
+      window.addEventListener(
+        "resize",
+        function() {
+          getmeasurements();
+        },
+        false
+      );
+      const width = 62;
+      const frames = 4;
+      const speed = 2;
+      window.addEventListener(
+        "scroll",
+        function() {
+          clearTimeout(throttlescroll);
+          throttlescroll = setTimeout(function() {
+            // throttle code inside scroll to once every 50 milliseconds
+            const pct = amountscrolled();
+            const frame = Math.round((pct / speed) % frames);
+            document.querySelector(".man").style.backgroundPosition = `${frame *
+              width}px 0px`;
+            document.querySelector("section:nth-child(2) h1").textContent = pct;
+          }, 5);
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

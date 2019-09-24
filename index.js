@@ -1,5 +1,5 @@
 function get() {
-  fetch("https://frontendautmn2019-5ad1.restdb.io/rest/superheroes", {
+  fetch(`https://frontendautmn2019-5ad1.restdb.io/rest/superheroes`, {
     method: "get",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
@@ -9,6 +9,7 @@ function get() {
   })
     .then(e => e.json())
     .then(heroes => {
+      console.log(heroes);
       heroes.forEach(addHeroToTheDOM);
     });
 }
@@ -16,21 +17,26 @@ function get() {
 function addHeroToTheDOM(hero) {
   const template = document.querySelector("template").content;
   const copy = template.cloneNode(true);
+  copy.querySelector("article.hero").dataset.heroid = hero._id;
+
   copy.querySelector("h1").textContent = hero.name;
   copy.querySelector("h2").textContent = hero.realname;
   copy.querySelector("p").textContent = hero.powers;
-  document.querySelector("#app").appendChild(copy);
+  copy.querySelector("button").addEventListener("click", () => {
+    deleteIt(hero._id);
+  });
+  document.querySelector("#app").prepend(copy);
 }
 get();
 
 function post() {
   const data = {
-    name: "The Frontender",
-    realname: "You",
-    age: 22,
-    powers: "CCS\nJS\nUX"
+    name: "The Backender",
+    realname: "!You?",
+    age: 40,
+    powers: "Node.js\nDatabases"
   };
-
+  addHeroToTheDOM(data);
   const postData = JSON.stringify(data);
   fetch("https://frontendautmn2019-5ad1.restdb.io/rest/superheroes", {
     method: "post",
@@ -45,7 +51,23 @@ function post() {
     .then(data => {
       console.log(data);
       //window.location = "";
-      addHeroToTheDOM(data);
+      //addHeroToTheDOM(data);
+    });
+}
+
+function deleteIt(id) {
+  fetch("https://frontendautmn2019-5ad1.restdb.io/rest/superheroes/" + id, {
+    method: "delete",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "x-apikey": "5d887443fd86cb75861e25ee",
+      "cache-control": "no-cache"
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      //TODO: delete from DOM
+      document.querySelector(`.hero[data-heroid="${id}"]`).remove();
     });
 }
 
