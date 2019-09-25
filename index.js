@@ -20,10 +20,19 @@ function addHeroToTheDOM(hero) {
   copy.querySelector("article.hero").dataset.heroid = hero._id;
 
   copy.querySelector("h1").textContent = hero.name;
-  copy.querySelector("h2").textContent = hero.realname;
+  copy.querySelector("h2>span").textContent = hero.realname;
   copy.querySelector("p").textContent = hero.powers;
-  copy.querySelector("button").addEventListener("click", () => {
-    deleteIt(hero._id);
+  console.log(hero.powers.split("\n"));
+  copy.querySelector("button").addEventListener("click", e => {
+    const target = e.target.parentElement;
+    target.classList.add("remove");
+
+    e.target.parentElement.addEventListener("transitionend", e => {
+      deleteIt(hero._id);
+      if (e.propertyName == "opacity") {
+        target.remove();
+      }
+    });
   });
   document.querySelector("#app").prepend(copy);
 }
@@ -50,8 +59,6 @@ function post() {
     .then(res => res.json())
     .then(data => {
       console.log(data);
-      //window.location = "";
-      //addHeroToTheDOM(data);
     });
 }
 
@@ -66,8 +73,7 @@ function deleteIt(id) {
   })
     .then(res => res.json())
     .then(data => {
-      //TODO: delete from DOM
-      document.querySelector(`.hero[data-heroid="${id}"]`).remove();
+      //document.querySelector(`.hero[data-heroid="${id}"]`).remove();
     });
 }
 
