@@ -6,9 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <style>
+      form,
+      label,
+      input,
+      button,
+      textarea {
+        display: block;
+      }
       #app {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 2em;
+      }
+      #app > article:nth-child(even) button {
+        background: hotpink;
       }
       #app > article:nth-child(odd) {
         background: hotpink;
@@ -16,8 +27,13 @@
     </style>
   </head>
   <body>
-    <button>Add hero</button>
-    <div id="app"></div>
+    <form>
+      <label>Name<input name="name" type="text" required/></label>
+      <label>Real Name<input name="realname" type="text" required/></label>
+      <label>Age<input name="age" type="number" required/></label>
+      <label>Powers<textarea name="powers" required></textarea></label>
+      <button type="submit">Add hero</button>
+    </form>
     <template>
       <article class="hero">
         <h1></h1>
