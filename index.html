@@ -86,15 +86,19 @@
         opacity: 0;
         overflow: hidden;
       }
+      .notValid {
+        background: red;
+      }
     </style>
   </head>
   <body>
+    <h1></h1>
     <form>
       <label>Name<input name="name" type="text" required/></label>
       <label>Real Name<input name="realname" type="text" required/></label>
       <label>Age<input name="age" type="number" required/></label>
       <label>Powers<textarea name="powers" required></textarea></label>
-      <button type="submit">Add hero</button>
+      <button type="submit" name="submit">Add hero</button>
     </form>
     <div id="app"></div>
 
