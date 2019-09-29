@@ -93,13 +93,22 @@
   </head>
   <body>
     <h1></h1>
-    <form>
+    <form id="addForm">
       <label>Name<input name="name" type="text" required/></label>
       <label>Real Name<input name="realname" type="text" required/></label>
       <label>Age<input name="age" type="number" required/></label>
       <label>Powers<textarea name="powers" required></textarea></label>
       <button type="submit" name="submit">Add hero</button>
     </form>
+    <form id="editForm">
+      <label>Name<input name="name" type="text" required/></label>
+      <label>Real Name<input name="realname" type="text" required/></label>
+      <label>Age<input name="age" type="number" required/></label>
+      <label>Powers<textarea name="powers" required></textarea></label>
+      <input type="hidden" name="id" />
+      <button type="submit" name="submit">Edit hero</button>
+    </form>
+
     <div id="app"></div>
 
     <template>
@@ -107,7 +116,8 @@
         <h1></h1>
         <h2>- <span></span></h2>
         <p></p>
-        <button>Delete Me</button>
+        <button class="btnEdit">Edit Me</button>
+        <button class="btnDelete">Fire Hero</button>
       </article>
     </template>
     <script src="index.js"></script>
